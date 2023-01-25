@@ -1,5 +1,4 @@
 // unit testing of stack Api
-/* eslint-env mocha */
 const chai = require('chai')
 const chaiHttp = require('chai-http')
 const responseMessage = require('../utils/responseMessage')
