@@ -3,10 +3,12 @@ console.log(process.env.NODE_ENV)
 
 const config = {
   dev: {
-    PORT: process.env.PORT || 4000
+    PORT: process.env.PORT || 4000,
+    STACK_SIZE: process.env.STACK_SIZE || 10
   },
   prod: {
-    PORT: process.env.PORT || 4000
+    PORT: process.env.PORT || 4000,
+    STACK_SIZE: process.env.STACK_SIZE || 10
   }
 }
 

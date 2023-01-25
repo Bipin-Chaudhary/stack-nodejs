@@ -7,7 +7,9 @@ const messages = {
   addedSuccessfully: '## added successfully!',
   fetchedSuccessfully: '## fetched successfully!',
   deletedSuccessfully: '## deleted successfully!',
-  stackIsEmpty: 'Stack is empty!, please add some elements!'
+  stackIsEmpty: 'Stack is empty!, please add some elements!',
+  inputValidationError: 'Input validation error!',
+  numbersOnly: 'Please enter a valid and positive integer!'
 }
 
 module.exports = messages

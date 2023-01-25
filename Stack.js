@@ -1,35 +1,40 @@
-// stack
+const config = require('./config')
+
 class Stack {
-  constructor () {
-    this.stackArr = [] // todo - make the size configurable
+  constructor (size) {
+    this.size = size
+    this.stackArr = new Array(this.size)
+    this.top = -1
   }
 
   push (value) {
-    this.stackArr.push(value)
-    return value
+    if (this.top === this.size - 1) return 'stack-overflow'
+    this.stackArr[++this.top] = value
   }
 
   pop () {
-    if (!this.stackArr.length) return 'Empty stack'
-    return this.stackArr.pop()
+    if (!this.stackArr.length) return 'stack-underflow'
+    this.stackArr[this.top--] = null
   }
 
-  seek () {
-    if (!this.stackArr.length) return 'Empty stack'
-    return this.stackArr[this.stackArr.length - 1]
+  peek () {
+    if (this.top === -1) return 'stack-underflow'
+    return this.stackArr[this.top]
   }
 
   isEmpty () {
-    return !this.stackArr.length
+    return this.top === -1
   }
 
   getStack () {
-    return this.stackArr
+    return this.stackArr.filter((ele) => ele !== null)
   }
 
   getSize () {
-    return this.stackArr.length
+    return this.size
   }
 }
 
-module.exports = new Stack()
+const stackObj = new Stack(parseInt(config.STACK_SIZE))
+
+module.exports = stackObj

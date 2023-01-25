@@ -1,6 +1,7 @@
 const stack = require('../Stack')
 const responseMessage = require('../utils/responseMessage')
 const statusCode = require('../utils/statusCode')
+const { validationResult } = require('express-validator')
 
 class StackController {
   async getStack (req, res) {
@@ -8,11 +9,17 @@ class StackController {
   }
 
   async pushStack (req, res) {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(statusCode.BadRequest).json({ message: responseMessage.inputValidationError, errors: errors.array() })
+    }
+
     const { element } = req.body
 
-    stack.push(parseInt(element))
+    const data = stack.push(parseInt(element))
+    if (data === 'stack-overflow') return res.status(statusCode.BadRequest).json({ message: 'stack overflowed' })
 
-    return res.status(statusCode.Accepted).json({ message: responseMessage.addedSuccessfully.replace('element'), data: stack.getStack() })
+    return res.status(statusCode.Accepted).json({ message: responseMessage.addedSuccessfully.replace('##', 'element'), data: stack.getStack() })
   }
 
   async popStack (req, res) {
