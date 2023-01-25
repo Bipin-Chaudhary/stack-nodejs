@@ -5,7 +5,7 @@ const { validationResult } = require('express-validator')
 
 class StackController {
   async getStack (req, res) {
-    return res.status(statusCode.Accepted).json({ message: responseMessage.fetchedSuccessfully.replace('##', 'stack'), data: stack.getStack() })
+    return res.status(statusCode.OK).json({ message: responseMessage.fetchedSuccessfully.replace('##', 'stack'), data: stack.getStack() })
   }
 
   async pushStack (req, res) {
@@ -19,7 +19,7 @@ class StackController {
     const data = stack.push(parseInt(element))
     if (data === 'stack-overflow') return res.status(statusCode.BadRequest).json({ message: 'stack overflowed' })
 
-    return res.status(statusCode.Accepted).json({ message: responseMessage.addedSuccessfully.replace('##', 'element'), data: stack.getStack() })
+    return res.status(statusCode.OK).json({ message: responseMessage.addedSuccessfully.replace('##', 'element'), data: stack.getStack() })
   }
 
   async popStack (req, res) {
@@ -27,7 +27,7 @@ class StackController {
 
     stack.pop()
 
-    return res.status(statusCode.Accepted).json({ message: responseMessage.deletedSuccessfully.replace('##', 'stack'), data: stack.getStack() })
+    return res.status(statusCode.OK).json({ message: responseMessage.deletedSuccessfully.replace('##', 'stack'), data: stack.getStack() })
   }
 }
 

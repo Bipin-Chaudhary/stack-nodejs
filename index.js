@@ -31,3 +31,5 @@ app.all('*', (req, res, next) => {
 })
 
 app.listen(config.PORT, console.log(`Server is running on port ${config.PORT}`))
+
+module.export = app
