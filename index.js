@@ -20,7 +20,7 @@ const stackRoutes = require('./routes/stack')
 // routes
 
 app.get('/', (req, res) => res.send('Welcome to Stack App'))
-app.use('/stack', stackRoutes)
+app.use('/api/stack', stackRoutes)
 
 // default route
 app.all('*', (req, res, next) => {
